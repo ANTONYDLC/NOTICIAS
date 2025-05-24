@@ -8,7 +8,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowNewsPortal", policy =>
     {
-        policy.WithOrigins("https://localhost:5002") // Cambia el puerto si tu frontend corre en otro
+        policy.WithOrigins("https://localhost:5101") // Cambia el puerto si tu frontend corre en otro
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
