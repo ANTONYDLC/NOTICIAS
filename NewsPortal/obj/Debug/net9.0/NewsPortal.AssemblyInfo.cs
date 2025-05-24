@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NewsPortal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77bf24fd49a6af1a5d0d1b1b15fe5b11ef5d8562")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0be8a33bc1bca97a3fb44bb40268b1288a959060")]
 [assembly: System.Reflection.AssemblyProductAttribute("NewsPortal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NewsPortal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

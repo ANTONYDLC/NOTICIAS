@@ -1,36 +1,32 @@
-using FeedbackAPI.Data;
+using FeedbackAPI.Models; // Ajusta según tu namespace
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Agregar servicios de controladores
-builder.Services.AddControllers();
+// Configurar CORS para permitir solicitudes desde el frontend (NewsPortal)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowNewsPortal", policy =>
+    {
+        policy.WithOrigins("https://localhost:5002") // Cambia el puerto si tu frontend corre en otro
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
-// Configurar DbContext con SQLite
-builder.Services.AddDbContext<FeedbackContext>(options =>
+// Agregar DbContext con SQLite
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=feedback.db"));
 
-// Configurar Swagger/OpenAPI
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "FeedbackAPI", Version = "v1" });
-});
+// Agregar controladores
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Middleware de desarrollo: Swagger UI y JSON
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Usar CORS
+app.UseCors("AllowNewsPortal");
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
+// Mapear controladores
 app.MapControllers();
 
 app.Run();
