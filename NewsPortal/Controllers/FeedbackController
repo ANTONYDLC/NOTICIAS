@@ -1,0 +1,51 @@
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+namespace NewsPortal.Controllers
+{
+    public class FeedbackController : Controller
+    {
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public FeedbackController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(int PostId, string sentimiento)
+        {
+            // Construimos el objeto para enviar a la API
+            var feedbackData = new
+            {
+                PostId = PostId,
+                Sentimiento = sentimiento
+            };
+
+            // Serializar a JSON
+            var json = JsonSerializer.Serialize(feedbackData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            // Crear cliente HttpClient (registrado en Program.cs)
+            var client = _httpClientFactory.CreateClient("FeedbackAPI");
+
+            // Enviar POST a la API (ajusta la URL según corresponda)
+            var response = await client.PostAsync("feedbacks", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                TempData["Mensaje"] = "¡Gracias por tu feedback!";
+            }
+            else
+            {
+                TempData["Mensaje"] = "Hubo un error al enviar el feedback. Intenta nuevamente.";
+            }
+
+            return RedirectToAction("Details", "News", new { id = PostId });
+        }
+    }
+}

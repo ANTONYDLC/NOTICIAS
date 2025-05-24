@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Enviar Feedback";
+}
+
+<h2>Enviar Feedback</h2>
+
+<form asp-controller="Feedback" asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="PostId">ID del Post:</label>
+        <input type="number" class="form-control" name="PostId" required />
+    </div>
+    <div class="form-group">
+        <label for="sentimiento">Sentimiento:</label>
+        <select class="form-control" name="sentimiento" required>
+            <option value="positivo">👍 Positivo</option>
+            <option value="negativo">👎 Negativo</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["Mensaje"]
+    </div>
+}

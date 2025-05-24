@@ -1,0 +1,27 @@
+@model NewsPortal.Models.PostDetailsViewModel
+
+<h1>@Model.Post.Title</h1>
+
+<p>@Model.Post.Body</p>
+
+<h3>Autor</h3>
+<p>@Model.Author.Name (@Model.Author.Email)</p>
+
+<h3>Comentarios</h3>
+<ul>
+    @foreach (var comment in Model.Comments)
+    {
+        <li>
+            <strong>@comment.Name</strong> (@comment.Email):<br />
+            @comment.Body
+        </li>
+    }
+</ul>
+
+<h3>¿Te gustó esta noticia?</h3>
+
+<form method="post" asp-controller="Feedback" asp-action="Create">
+    <input type="hidden" name="PostId" value="@Model.Post.Id" />
+    <button type="submit" name="sentimiento" value="like">👍 Me gustó</button>
+    <button type="submit" name="sentimiento" value="dislike">👎 No me gustó</button>
+</form>
