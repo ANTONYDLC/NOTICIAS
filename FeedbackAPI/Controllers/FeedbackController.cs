@@ -6,52 +6,53 @@ using System.Threading.Tasks;
 using System.Linq;
 
 namespace FeedbackAPI.Controllers
-
+{
     [ApiController]
     [Route("api/[controller]")]
     public class FeedbacksController : ControllerBase
-{
-    private readonly FeedbackDbContext _context;
-
-    public FeedbacksController(FeedbackDbContext context)
     {
-        _context = context;
-    }
+        private readonly FeedbackContext _context;
 
-    [HttpGet]
-    public async Task<IEnumerable<Feedback>> Get()
-    {
-        return await _context.Feedbacks.ToListAsync();
-    }
+        public FeedbacksController(FeedbackContext context)
+        {
+            _context = context;
+        }
 
-    [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Feedback feedback)
-    {
-        _context.Feedbacks.Add(feedback);
-        await _context.SaveChangesAsync();
-        return CreatedAtAction(nameof(Get), new { id = feedback.Id }, feedback);
-    }
+        [HttpGet]
+        public async Task<IEnumerable<Feedback>> Get()
+        {
+            return await _context.Feedbacks.ToListAsync();
+        }
 
-    public class LikeRequest
-    {
-        public int FeedbackId { get; set; }
-        public bool IsPositive { get; set; }
-    }
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Feedback feedback)
+        {
+            _context.Feedbacks.Add(feedback);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(Get), new { id = feedback.Id }, feedback);
+        }
 
-    [HttpPost("like")]
-    public async Task<IActionResult> Like([FromBody] LikeRequest request)
-    {
-        var feedback = await _context.Feedbacks.FindAsync(request.FeedbackId);
-        if (feedback == null)
-            return NotFound();
+        public class LikeRequest
+        {
+            public int FeedbackId { get; set; }
+            public bool IsPositive { get; set; }
+        }
 
-        if (request.IsPositive)
-            feedback.LikesCount++;
-        else
-            feedback.DislikesCount++;
+        [HttpPost("like")]
+        public async Task<IActionResult> Like([FromBody] LikeRequest request)
+        {
+            var feedback = await _context.Feedbacks.FindAsync(request.FeedbackId);
+            if (feedback == null)
+                return NotFound();
 
-        await _context.SaveChangesAsync();
+            if (request.IsPositive)
+                feedback.LikesCount++;
+            else
+                feedback.DislikesCount++;
 
-        return Ok(new { message = "Voto registrado" });
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Voto registrado" });
+        }
     }
 }

@@ -1,19 +1,50 @@
 using Microsoft.AspNetCore.Mvc;
-using NewsPortal.Models;
-using System;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace NewsPortal.Controllers
 {
     public class FeedbackController : Controller
     {
-        [HttpPost]
-        public IActionResult Create(int PostId, string sentimiento)
-        {
-            // Aquí guardaremos el feedback en la API local (luego)
-            // Por ahora solo simulamos:
-            Console.WriteLine($"Feedback recibido para post {PostId}: {sentimiento}");
+        private readonly IHttpClientFactory _httpClientFactory;
 
-            TempData["Mensaje"] = "¡Gracias por tu feedback!";
+        public FeedbackController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(int PostId, string sentimiento)
+        {
+            // Construimos el objeto para enviar a la API
+            var feedbackData = new
+            {
+                PostId = PostId,
+                Sentimiento = sentimiento
+            };
+
+            // Serializar a JSON
+            var json = JsonSerializer.Serialize(feedbackData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            // Crear cliente HttpClient (registrado en Program.cs)
+            var client = _httpClientFactory.CreateClient("FeedbackAPI");
+
+            // Enviar POST a la API (ajusta la URL según corresponda)
+            var response = await client.PostAsync("feedbacks", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                TempData["Mensaje"] = "¡Gracias por tu feedback!";
+            }
+            else
+            {
+                TempData["Mensaje"] = "Hubo un error al enviar el feedback. Intenta nuevamente.";
+            }
+
             return RedirectToAction("Details", "News", new { id = PostId });
         }
     }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS\\NewsPortal\\NewsPortal.csproj": {}
+    "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS-1\\NewsPortal\\NewsPortal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS\\NewsPortal\\NewsPortal.csproj": {
+    "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS-1\\NewsPortal\\NewsPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS\\NewsPortal\\NewsPortal.csproj",
+        "projectUniqueName": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS-1\\NewsPortal\\NewsPortal.csproj",
         "projectName": "NewsPortal",
-        "projectPath": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS\\NewsPortal\\NewsPortal.csproj",
+        "projectPath": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS-1\\NewsPortal\\NewsPortal.csproj",
         "packagesPath": "C:\\Users\\Antho\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS\\NewsPortal\\obj\\",
+        "outputPath": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS-1\\NewsPortal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Antho\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,5 +1,6 @@
 using FeedbackAPI.Models; // Ajusta según tu namespace
 using Microsoft.EntityFrameworkCore;
+using FeedbackAPI.Data; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,8 @@ builder.Services.AddCors(options =>
 });
 
 // Agregar DbContext con SQLite
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=feedback.db"));
+builder.Services.AddDbContext<FeedbackContext>(options =>
+    options.UseSqlite("feedback.db"));
 
 // Agregar controladores
 builder.Services.AddControllers();

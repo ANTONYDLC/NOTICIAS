@@ -2,11 +2,13 @@ using System;
 
 namespace FeedbackAPI.Models
 {
-    public class Feedback
-    {
-        public int Id { get; set; } // clave primaria
-        public int PostId { get; set; }
-        public string Sentimiento { get; set; } = string.Empty; // "like" o "dislike"
-        public DateTime Fecha { get; set; }
-    }
+public class Feedback
+{
+    public int Id { get; set; }
+    public string Sentimiento { get; set; }
+
+    public int LikesCount { get; set; } = 0;      // <-- Agregado
+    public int DislikesCount { get; set; } = 0;   // <-- Agregado
+}
+
 }

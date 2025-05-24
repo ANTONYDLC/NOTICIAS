@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS\\FeedbackAPI\\FeedbackAPI.csproj": {}
+    "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS-1\\FeedbackAPI\\FeedbackAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS\\FeedbackAPI\\FeedbackAPI.csproj": {
+    "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS-1\\FeedbackAPI\\FeedbackAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS\\FeedbackAPI\\FeedbackAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS-1\\FeedbackAPI\\FeedbackAPI.csproj",
         "projectName": "FeedbackAPI",
-        "projectPath": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS\\FeedbackAPI\\FeedbackAPI.csproj",
+        "projectPath": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS-1\\FeedbackAPI\\FeedbackAPI.csproj",
         "packagesPath": "C:\\Users\\Antho\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS\\FeedbackAPI\\obj\\",
+        "outputPath": "C:\\Users\\Antho\\OneDrive\\Desktop\\NOTICIAS-1\\FeedbackAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Antho\\AppData\\Roaming\\NuGet\\NuGet.Config"
