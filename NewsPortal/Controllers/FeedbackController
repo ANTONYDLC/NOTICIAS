@@ -1,0 +1,20 @@
+using Microsoft.AspNetCore.Mvc;
+using NewsPortal.Models;
+using System;
+
+namespace NewsPortal.Controllers
+{
+    public class FeedbackController : Controller
+    {
+        [HttpPost]
+        public IActionResult Create(int PostId, string sentimiento)
+        {
+            // Aquí guardaremos el feedback en la API local (luego)
+            // Por ahora solo simulamos:
+            Console.WriteLine($"Feedback recibido para post {PostId}: {sentimiento}");
+
+            TempData["Mensaje"] = "¡Gracias por tu feedback!";
+            return RedirectToAction("Details", "News", new { id = PostId });
+        }
+    }
+}
